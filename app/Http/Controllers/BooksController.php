@@ -56,10 +56,30 @@ class BooksController extends Controller
 
     public function getFromDatabase()
     {
-        $books = Book::all(); // коллекция
+        $books = Book::all(); // коллекция все книги
         // $books->toArray() - это уже обычный массив
 
-        $books =
+        // все книги упорядоченные по году
+        $books = Book::orderBy('year')->get();
+
+        // все книги упорядоченные по году по убыванию
+        $books = Book::orderBy('year', 'desc')->get();
+
+        // получить книгу по данному id
+        $book = Book::find(5); // null если не найдена
+
+        // получить все книги с годом от 2000 до 2005
+        $books = Book::where('year', '<=', 2005)
+            ->where('year', '>=', 2000)
+            ->orderBy('year')
+            ->get();
+
+        // все книги автора Достоевский
+        $books = Book::where('author', '=', 'Достоевский')
+            //Book::where('author', 'Достоевский')
+            ->orderBy('name')
+            ->get();
+
         dd($books);
     }
 }

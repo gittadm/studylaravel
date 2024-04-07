@@ -37,7 +37,7 @@ use Illuminate\Database\Eloquent\Model;
 class Book extends Model
 {
     protected $table = 'books'; // необязательно для Book
-    public $timestamps = false; // если нет полей created_at, updated_at
+    // public $timestamps = false; // если нет полей created_at, updated_at
 
     protected $fillable = [
         'name',
