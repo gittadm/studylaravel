@@ -6,6 +6,7 @@ use App\Http\Controllers\HabrController;
 use App\Http\Controllers\LessonsController;
 use App\Http\Controllers\SubjectsController;
 use App\Http\Controllers\TasksController;
+use App\Http\Controllers\VuexyController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentsController;
 
@@ -42,3 +43,6 @@ Route::get('habr/article/{id}/comments/{name}', [HabrController::class, 'article
 
 Route::get('books', [BooksController::class, 'index']);
 Route::get('books/from/database', [BooksController::class, 'getFromDatabase']);
+
+Route::get('vuexy/profile', [VuexyController::class, 'profile'])->name('vuexy.profile');
+Route::get('vuexy/books', [VuexyController::class, 'books'])->name('vuexy.books');
