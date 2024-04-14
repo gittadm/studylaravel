@@ -46,3 +46,7 @@ Route::get('books/from/database', [BooksController::class, 'getFromDatabase']);
 
 Route::get('vuexy/profile', [VuexyController::class, 'profile'])->name('vuexy.profile');
 Route::get('vuexy/books', [VuexyController::class, 'books'])->name('vuexy.books');
+Route::get('vuexy/books/create', [VuexyController::class, 'create'])->name('vuexy.books.create');
+
+// для получения данных с формы
+Route::post('vuexy/books/store', [VuexyController::class, 'store'])->name('vuexy.books.store');
