@@ -3,6 +3,7 @@
 use App\Http\Controllers\BooksController;
 use App\Http\Controllers\CarbonController;
 use App\Http\Controllers\HabrController;
+use App\Http\Controllers\HomeworkController;
 use App\Http\Controllers\LessonsController;
 use App\Http\Controllers\SubjectsController;
 use App\Http\Controllers\TasksController;
@@ -20,6 +21,9 @@ use App\Http\Controllers\StudentsController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('homework1/task1', [HomeworkController::class, 'task1']);
+
 
 Route::get('/', function () {
     return view('welcome');
