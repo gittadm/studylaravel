@@ -5,40 +5,20 @@
     <title>HTML5</title>
 </head>
 <body>
-<h1>Генератор</h1>
-<ul>
-    <li>Цвета
-        <ul>
-            <li>
-                Color Mixers
-            </li>
-            <li>
-                Color Tester
-            </li>
-            <li>
-                Color Pallete
-            </li>
-        </ul>
-    </li>
-    <li>Фавиконы
-        <ul>
-            <li><a href=#>Скачать</a></li>
-            <li><a href=#>Демо</a></li>
-        </ul>
-    </li>
-    <li>Фоны
-        <ul>
-            <li>BgMaker</li>
-            <li>StripeGeneration</li>
-        </ul>
-    </li>
-    <li>Изображения
-        <ol>
-            <li>Buttonator</li>
-            <li>AjaxLoad</li>
+    <h1>Привет как дела</h1>
+Количество: {{ $count }} <hr>
 
-        </ol>
-    </li>
-</ul>
+@foreach($prices as $price)
+    <p>
+        {{ $price }}
+    </p>
+@endforeach
+
+@if($count > 50)
+    !!!
+@else
+    ???
+@endif
+
 </body>
 </html>

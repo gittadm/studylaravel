@@ -23,7 +23,7 @@ use App\Http\Controllers\StudentsController;
 */
 
 Route::get('homework1/task1', [HomeworkController::class, 'task1']);
-
+Route::get('homework1/task2', [HomeworkController::class, 'task2']);
 
 Route::get('/', function () {
     return view('welcome');
