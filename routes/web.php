@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BooksController;
 use App\Http\Controllers\CarbonController;
+use App\Http\Controllers\DatabaseController;
 use App\Http\Controllers\HabrController;
 use App\Http\Controllers\HomeworkController;
 use App\Http\Controllers\LessonsController;
@@ -24,6 +25,7 @@ use App\Http\Controllers\StudentsController;
 
 Route::get('homework1/task1', [HomeworkController::class, 'task1']);
 Route::get('homework1/task2', [HomeworkController::class, 'task2']);
+Route::get('database/crud', [DatabaseController::class, 'crud']);
 
 Route::get('/', function () {
     return view('welcome');
