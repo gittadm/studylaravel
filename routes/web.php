@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BooksController;
 use App\Http\Controllers\CarbonController;
+use App\Http\Controllers\CarController;
 use App\Http\Controllers\DatabaseController;
 use App\Http\Controllers\HabrController;
 use App\Http\Controllers\HomeworkController;
@@ -56,3 +57,5 @@ Route::get('vuexy/books/create', [VuexyController::class, 'create'])->name('vuex
 
 // для получения данных с формы
 Route::post('vuexy/books/store', [VuexyController::class, 'store'])->name('vuexy.books.store');
+
+Route::get('cars', [CarController::class, 'index']);
