@@ -8,6 +8,7 @@ class StudentsController extends Controller
     {
         $students = ['Дима', 'Петя', 'Вася'];
 
+
         return view(
             'students', ['students' => $students]
         );

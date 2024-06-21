@@ -4,6 +4,7 @@ use App\Http\Controllers\BooksController;
 use App\Http\Controllers\CarbonController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\DatabaseController;
+use App\Http\Controllers\FlexController;
 use App\Http\Controllers\HabrController;
 use App\Http\Controllers\HomeworkController;
 use App\Http\Controllers\LessonsController;
@@ -59,3 +60,8 @@ Route::get('vuexy/books/create', [VuexyController::class, 'create'])->name('vuex
 Route::post('vuexy/books/store', [VuexyController::class, 'store'])->name('vuexy.books.store');
 
 Route::get('cars', [CarController::class, 'index']);
+
+Route::get('flex', [FlexController::class, 'index'])
+    ->name('flex.index');
+Route::post('flex/form', [FlexController::class, 'storeForm'])
+    ->name('flex.form');
