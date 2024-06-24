@@ -4,6 +4,7 @@ use App\Http\Controllers\BooksController;
 use App\Http\Controllers\CarbonController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\DatabaseController;
+use App\Http\Controllers\DatetimeCarbonController;
 use App\Http\Controllers\FlexController;
 use App\Http\Controllers\HabrController;
 use App\Http\Controllers\HomeworkController;
@@ -61,7 +62,16 @@ Route::post('vuexy/books/store', [VuexyController::class, 'store'])->name('vuexy
 
 Route::get('cars', [CarController::class, 'index']);
 
-Route::get('flex', [FlexController::class, 'index'])
-    ->name('flex.index');
-Route::post('flex/form', [FlexController::class, 'storeForm'])
-    ->name('flex.form');
+Route::get('datetime/carbon', [DatetimeCarbonController::class, 'index']);
+
+Route::group(
+    ['prefix' => 'flex', 'as' => 'flex.'],
+    function () {
+        Route::controller(FlexController::class)->group(
+            function () {
+                Route::get('/', 'index')->name('index');
+                Route::post('form', 'storeForm')->name('form');
+            }
+        );
+    }
+);

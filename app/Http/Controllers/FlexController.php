@@ -13,8 +13,10 @@ class FlexController extends Controller
         $projectCount = Car::count();
         $cars = Car::limit(4)->orderBy('id', 'desc')->get();
 
-        return view('flex.index',
-                    compact('projectCount', 'cars'));
+        return view(
+            'flex.index',
+            compact('projectCount', 'cars')
+        );
     }
 
     public function storeForm(Request $request)
@@ -29,6 +31,16 @@ class FlexController extends Controller
         $message->description = $request->message;
 
         $message->save();
+
+//        Message::create(
+//            [
+//                'name' => $request->name,
+//                'email' => $request->email,
+//            ]
+//        );
+//
+        $message = Message::create($request->all()); // должно быть указано fillable в модели
+        $message = Message::forceCreate($request->all()); // не использовать fillable в модели
 
         return redirect()->route('flex.index');
     }

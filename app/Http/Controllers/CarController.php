@@ -103,7 +103,23 @@ class CarController extends Controller
             ->orderBy('year')
             ->get();
 
-        dd($cars);
+        // Показать все авто которые (красные и проданные) или
+        // (зеленые и непроданные)
 
+        $color = 'red';
+        $cars = Car::where(function ($query) use ($color) {
+            $query->where('color', $color)
+                ->where('is_sold', 1);
+        })->orWhere(function ($query) {
+            $query->where('color', 'green')
+                ->where('is_sold', 0);
+        })->get();
+
+        $a = [1, 1, 1];
+        foreach ($a as &$x) {
+            $x = 5;
+        }
+
+        dd($cars);
     }
 }
