@@ -21,6 +21,15 @@ return new class extends Migration
             $table->unsignedSmallInteger('year')->nullable();
             $table->boolean('is_sold')->default(false);
             $table->timestamps();
+
+            $table->unsignedBigInteger('user_id')->nullable();
+
+            $table->foreign('user_id')->references('id')
+                ->on('users')
+                ->onUpdate('cascade')
+                ->onDelete('set null');
+                //->onDelete('cascade');
+                //->onDelete('restrict');
         });
     }
 

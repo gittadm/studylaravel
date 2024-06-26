@@ -8,4 +8,9 @@ class Car extends Model
 {
     protected $table = 'cars';
     // public $timestamps = false; // отключить created_at, updated_at $table->timestamps();
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

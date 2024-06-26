@@ -61,6 +61,7 @@ Route::get('vuexy/books/create', [VuexyController::class, 'create'])->name('vuex
 Route::post('vuexy/books/store', [VuexyController::class, 'store'])->name('vuexy.books.store');
 
 Route::get('cars', [CarController::class, 'index']);
+Route::get('cars/relations', [CarController::class, 'relations']);
 
 Route::get('datetime/carbon', [DatetimeCarbonController::class, 'index']);
 

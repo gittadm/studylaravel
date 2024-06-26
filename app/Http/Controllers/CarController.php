@@ -4,9 +4,32 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Car;
+use App\Models\User;
 
 class CarController extends Controller
 {
+    public function relations()
+    {
+        $car = Car::find(1);
+        // $user = User::where('id', $car->user_id)->first();
+        // dd($car->user->name);
+
+        $user = User::find(1);
+
+        foreach ($user->cars as $car) {
+            echo $car->model . ' ;';
+        }
+
+        // dd($user->cars);
+
+        // Проблема n+1
+        $users = User::with('cars')->get();
+        dd($users);
+        foreach ($users as $user) {
+            // $user->cars
+        }
+    }
+
     public function index()
     {
 //        $table->id();
