@@ -44,6 +44,9 @@ Route::get('lessons', [LessonsController::class, 'lessons']);
 
 
 Route::get('carbon', [CarbonController::class, 'task1']);
+Route::get('cast/json', [CarbonController::class, 'task2']);
+Route::get('soft-delete', [CarbonController::class, 'task3']);
+
 
 Route::get('habr/article/{id}', [HabrController::class, 'article']);
 

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('color', 30)->nullable();
             $table->unsignedSmallInteger('year')->nullable();
             $table->boolean('is_sold')->default(false);
+            $table->softDeletes();
             $table->timestamps();
 
             $table->unsignedBigInteger('user_id')->nullable();

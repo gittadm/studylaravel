@@ -2,10 +2,64 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Car;
 use Carbon\Carbon;
 
 class CarbonController extends Controller
 {
+    public function task3()
+    {
+        //$car = Car::forceCreate(['vin' => mt_rand(1, 1000), 'model' => 'm' . mt_rand(1, 1000)]);
+
+//        $car = Car::find(2);
+//
+//        if ($car) {
+//            $car->delete();
+//        }
+
+//        $car = Car::find(2);
+//
+//        if ($car) {
+//            $car->forceDelete();
+//        }
+
+        $car = Car::first();
+
+        $car->test();
+
+        // 'VIN - Model (color)'
+
+        // dd($car->getFullInfo());
+
+//        $car->model;
+//        $cat->is_solid;
+
+        dd($car->short_model_name);
+
+        dd($car->full_info);
+
+        dd(Car::withTrashed()->where('id', '<', 100)->restore());
+    }
+
+    public function task2()
+    {
+        $car = Car::find(1);
+
+//        $a = (object)['name' => 'Petr', 'year' => 2005];
+//        echo $a->name;
+
+        $a = collect([1, 2, 3]);
+        $strJson = $a->toJson();
+
+        $strJson = json_encode(['name' => 'Petr', 'year' => 2005]);
+
+        $b = json_decode($strJson);
+
+        dd($b);
+
+        dd($car->is_sold);
+    }
+
     public function task1()
     {
         // Дан режим работы интернет-магазина. ПН 9:00 – 21:00 ВТ 9:00 – 21:00
