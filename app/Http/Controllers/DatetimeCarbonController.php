@@ -6,6 +6,47 @@ use Carbon\Carbon;
 
 class DatetimeCarbonController extends Controller
 {
+    // n! = 1*2*3*...*(n-1)*n
+    // 4! = 1*2*3*4
+    // 0! = 1
+
+    private function fact(int $n): int
+    {
+        // n! = n * (n-1)!
+        if ($n === 1) {
+            return 1;
+        }
+
+        return $n * $this->fact($n - 1);
+    }
+
+    private function countArrayNumbers(array $a): int
+    {
+        // [1, 27, [3, [4, 5]], 6, [7], [8, 9]].
+
+        $count = 0;
+        foreach ($a as $x) {
+            if (is_array($x)) {
+                $count += $this->countArrayNumbers($x);
+            } else {
+                $count++;
+            }
+        }
+        return $count;
+    }
+
+    public function recursion()
+    {
+        // dd($this->fact(5));
+
+        // Дан многомерный массив чисел.
+        // Например, [1, 2, [3, [4, 5]], 6, [7], [8, 9]].
+        // Найти кол-во чисел в массиве.
+
+        $a = [1, 2, [3, [4, 5]], 6, [7], [8, 9]];
+        dd($this->countArrayNumbers($a));
+    }
+
     public function index()
     {
         $this->task10();

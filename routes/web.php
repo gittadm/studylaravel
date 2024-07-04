@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminUsersController;
 use App\Http\Controllers\BooksController;
 use App\Http\Controllers\CarbonController;
 use App\Http\Controllers\CarController;
@@ -67,6 +69,7 @@ Route::get('cars', [CarController::class, 'index']);
 Route::get('cars/relations', [CarController::class, 'relations']);
 
 Route::get('datetime/carbon', [DatetimeCarbonController::class, 'index']);
+Route::get('recursion', [DatetimeCarbonController::class, 'recursion']);
 
 Route::group(
     ['prefix' => 'flex', 'as' => 'flex.'],
@@ -79,3 +82,6 @@ Route::group(
         );
     }
 );
+
+Route::get('admin/profile', [AdminController::class, 'profile'])->name('admin.profile');
+Route::get('admin/users', [AdminUsersController::class, 'users'])->name('admin.users');
