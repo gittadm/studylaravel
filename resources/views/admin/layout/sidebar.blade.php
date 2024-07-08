@@ -14,7 +14,7 @@
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
             <li class=" nav-item"><a
-                    href="{{ route('admin.users') }}" class="if-pb-0"><i class="feather icon-user"></i>
+                    href="{{ route('admin.users.index') }}" class="if-pb-0"><i class="feather icon-user"></i>
                     <span class="menu-title">Пользователи</span></a>
             </li>
             <li class=" nav-item"><a

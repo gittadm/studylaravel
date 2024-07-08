@@ -12,10 +12,10 @@
 
                 <div class="row mb-2">
                     <div class="col-md-12">
-                        <button type="button" class="btn btn-outline-primary">
+                        <a href="{{ route('admin.users.create') }}" class="btn btn-outline-primary">
                             <i data-feather="plus"></i>
                             <span>Новый пользователь</span>
-                        </button>
+                        </a>
                     </div>
                 </div>
 

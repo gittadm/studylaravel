@@ -32,9 +32,12 @@ Route::get('homework1/task1', [HomeworkController::class, 'task1']);
 Route::get('homework1/task2', [HomeworkController::class, 'task2']);
 Route::get('database/crud', [DatabaseController::class, 'crud']);
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get(
+    '/',
+    function () {
+        return view('welcome');
+    }
+);
 
 // Route::get('subjects', ['App\Http\Controllers\SubjectsController', 'subjects']);
 Route::get('students', [StudentsController::class, 'students']);
@@ -83,5 +86,12 @@ Route::group(
     }
 );
 
-Route::get('admin/profile', [AdminController::class, 'profile'])->name('admin.profile');
-Route::get('admin/users', [AdminUsersController::class, 'users'])->name('admin.users');
+Route::group(
+    ['prefix' => 'admin', 'as' => 'admin.'],
+    function () {
+        Route::get('profile', [AdminController::class, 'profile'])->name('profile');
+        Route::get('users', [AdminUsersController::class, 'users'])->name('users.index');
+        Route::get('users/create', [AdminUsersController::class, 'create'])->name('users.create');
+        Route::post('users/create', [AdminUsersController::class, 'store'])->name('users.store');
+    }
+);
