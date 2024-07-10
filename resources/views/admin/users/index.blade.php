@@ -9,6 +9,9 @@
         <div class="row match-height">
             <div class="col-md-12">
 
+                @if(session()->has('message'))
+                    <p class="text-success">{{ session('message') }}</p>
+                @endif
 
                 <div class="row mb-2">
                     <div class="col-md-12">
@@ -37,27 +40,26 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>
-                                            1
-                                        </td>
-                                        <td>Иванов Иван</td>
-                                        <td>
-                                            log123
-                                        </td>
-                                        <td>abs@email.ru</td>
-                                        <td>
-                                            <span class="badge rounded-pill badge-light-primary me-1">Активный</span>
-                                        </td>
-                                        <td>
-                                            <button type="button" class="btn btn-sm btn-outline-dark">
-                                                <span>Редактировать</span>
-                                            </button>
-                                            <button type="button" class="btn btn-sm btn-outline-danger">
-                                                <span>Удалить</span>
-                                            </button>
-                                        </td>
-                                    </tr>
+
+                                        @foreach($users as $user)
+                                            <tr>
+                                                <td>{{ $user->id }}</td>
+                                                <td>{{ $user->name }}</td>
+                                                <td>{{ $user->login }}</td>
+                                                <td>{{ $user->email }}</td>
+                                                <td>
+                                                    @include('admin.users.status')
+                                                </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-sm btn-outline-dark">
+                                                        <span>Редактировать</span>
+                                                    </button>
+                                                    <button type="button" class="btn btn-sm btn-outline-danger">
+                                                        <span>Удалить</span>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                     <tfoot>
                                     <tr>
@@ -71,11 +73,17 @@
                                     </tfoot>
                                 </table>
                             </div>
+
                         </div>
                     </div>
                 </div>
                 <!-- Striped rows end -->
 
+                <div class="row">
+                    <div class="col-12">
+                        {{ $users->links('vendor.pagination.bootstrap-5') }}
+                    </div>
+                </div>
 
 
 

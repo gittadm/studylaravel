@@ -13,11 +13,10 @@
                         <div class="card-body">
                             @if($errors->any())
                                 <div style="color: red;">
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
+                                    @foreach ($errors->all() as $error)
+                                        {{ $error }}
+                                    @endforeach
+                                    <br>
                                 </div>
                             @endif
                             <form action="{{ route('admin.users.store') }}" class="form form-horizontal" method="post">
@@ -32,7 +31,7 @@
                                                 <div class="col-md-8">
                                                     <select class="form-control" required autocomplete="off" name="status">
                                                         @foreach($statuses as $key => $status)
-                                                            <option value="{{ $key }}">{{ $status }}</option>
+                                                            <option value="{{ $key }}" @if($key == old('status')) selected @endif>{{ $status }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -44,7 +43,7 @@
                                                     <span>Фамилия и имя*</span>
                                                 </div>
                                                 <div class="col-md-8">
-                                                    <input type="text" value="" required autocomplete="off" class="form-control" name="name" placeholder="">
+                                                    <input type="text" value="{{ old('name', 'Petr') }}" required autocomplete="off" class="form-control" name="name" placeholder="">
                                                 </div>
                                             </div>
                                         </div>
@@ -54,7 +53,7 @@
                                                     <span>Логин</span>
                                                 </div>
                                                 <div class="col-md-8">
-                                                    <input type="text" class="form-control" autocomplete="off" value="" name="login" placeholder="">
+                                                    <input type="text" class="form-control" autocomplete="off" value="{{ old('login', 'peter') }}" name="login" placeholder="">
                                                 </div>
                                             </div>
                                         </div>
@@ -64,7 +63,7 @@
                                                     <span>Email</span>
                                                 </div>
                                                 <div class="col-md-8">
-                                                    <input type="email" class="form-control" autocomplete="off" value="" name="email" placeholder="">
+                                                    <input type="email" class="form-control" autocomplete="off" value="{{ old('email') }}" name="email" placeholder="">
                                                 </div>
                                             </div>
                                         </div>

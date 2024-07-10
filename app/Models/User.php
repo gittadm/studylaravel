@@ -88,6 +88,21 @@ class User extends Authenticatable
         ];
     }
 
+    public function getStatusNameAttribute()
+    {
+        return User::getStatuses()[$this->status];
+    }
+
+    public function getIsActiveAttribute()
+    {
+        return $this->status === User::STATUS_ACTIVE;
+    }
+
+    public function getIsBlockedAttribute()
+    {
+        return $this->status === User::STATUS_BLOCKED;
+    }
+
     public function cars()
     {
         return $this->hasMany(Car::class);

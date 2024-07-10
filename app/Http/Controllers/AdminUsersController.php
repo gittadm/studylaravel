@@ -9,7 +9,9 @@ class AdminUsersController extends Controller
 {
     public function users()
     {
-        return view('admin.users.index');
+        $users = User::orderBy('id', 'desc')->paginate(2);
+
+        return view('admin.users.index', compact('users'));
     }
 
     public function create()
@@ -27,6 +29,7 @@ class AdminUsersController extends Controller
 
         User::create($data);
 
-        return redirect()->route('admin.users.index');
+        return redirect()->route('admin.users.index')
+            ->with('message', 'Пользователь успешно создан');
     }
 }
