@@ -13,6 +13,10 @@
                     <p class="text-success">{{ session('message') }}</p>
                 @endif
 
+                @if(session()->has('error'))
+                    <p class="text-danger">{{ session('error') }}</p>
+                @endif
+
                 <div class="row mb-2">
                     <div class="col-md-12">
                         <a href="{{ route('admin.users.create') }}" class="btn btn-outline-primary">
@@ -22,6 +26,7 @@
                     </div>
                 </div>
 
+                @includeIf('admin.users.filter')
 
                 <!-- Striped rows start -->
                 <div class="row">
@@ -51,12 +56,12 @@
                                                     @include('admin.users.status')
                                                 </td>
                                                 <td>
-                                                    <button type="button" class="btn btn-sm btn-outline-dark">
+                                                    <a href="{{ route('admin.users.edit', [$user->id]) }}"  class="btn btn-sm btn-outline-dark">
                                                         <span>Редактировать</span>
-                                                    </button>
-                                                    <button type="button" class="btn btn-sm btn-outline-danger">
+                                                    </a>
+                                                    <a href="{{ route('admin.users.delete', [$user->id]) }}" class="btn btn-sm btn-outline-danger">
                                                         <span>Удалить</span>
-                                                    </button>
+                                                    </a>
                                                 </td>
                                             </tr>
                                         @endforeach

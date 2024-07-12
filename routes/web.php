@@ -91,9 +91,23 @@ Route::group(
     ['prefix' => 'admin', 'as' => 'admin.'],
     function () {
         Route::get('profile', [AdminController::class, 'profile'])->name('profile');
-        Route::get('users', [AdminUsersController::class, 'users'])->name('users.index');
-        Route::get('users/create', [AdminUsersController::class, 'create'])->name('users.create');
-        Route::post('users/create', [AdminUsersController::class, 'store'])->name('users.store');
+
+        Route::group(
+            ['prefix' => 'users', 'as' => 'users.'],
+            function () {
+                Route::controller(AdminUsersController::class)->group(
+                    function () {
+                        Route::get('/', 'users')->name('index');
+                        Route::get('create', 'create')->name('create');
+                        Route::post('create', 'store')->name('store');
+                        Route::get('delete/{id}', 'delete')->name('delete');
+                        Route::get('edit/{id}', 'edit')->name('edit');
+                        Route::post('update/{id}', 'update')->name('update');
+                        Route::post('update/password/{id}', 'updatePassword')->name('update.password');
+                    }
+                );
+            }
+        );
     }
 );
 
