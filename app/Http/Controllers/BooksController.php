@@ -74,6 +74,17 @@ class BooksController extends Controller
             ->orderBy('year')
             ->get();
 
+        $books = Book::query();
+
+        $books->where('year', '<=', 2005);
+
+        $books->where('year', '>=', 2000);
+
+        $books->orderBy('year');
+
+        $books = $books->get();
+
+
         // все книги автора Достоевский
         $books = Book::where('author', '=', 'Достоевский')
             //Book::where('author', 'Достоевский')

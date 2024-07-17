@@ -6,15 +6,46 @@ use App\Http\Requests\Users\StoreRequest;
 use App\Http\Requests\Users\UpdatePasswordRequest;
 use App\Http\Requests\Users\UpdateRequest;
 use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class AdminUsersController extends Controller
 {
-    public function users()
+    public function users(Request $request)
     {
-        $users = User::orderBy('id', 'desc')->paginate(2);
+        $users = User::query();
+
+        if (!empty($request->status)) {
+            $users->where('status', $request->status);
+        }
+
+        if (!empty($request->search)) {
+            $search = Str::lower(trim($request->search));
+            $search = '%' . $search . '%';
+            $users->where(function ($query) use ($search) {
+                $query->where('name', 'like', $search)
+                    ->orWhere('login', 'like', $search)
+                    ->orWhere('email', 'like', $search);
+            });
+        }
+
+        if (!empty($request->sort)) {
+            if ($request->sort === 'name') {
+                $users->orderBy('name');
+            } else {
+                $users->orderBy('id', 'desc');
+            }
+        } else {
+            $users->orderBy('name');
+        }
+
+        $users = $users->paginate();
+
         $statuses = User::getStatuses();
 
-        return view('admin.users.index', compact('users', 'statuses'));
+        $filter = $request->all();
+
+        return view('admin.users.index', compact('users', 'statuses', 'filter'));
     }
 
     public function create()

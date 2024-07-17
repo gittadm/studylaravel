@@ -10,21 +10,21 @@
                     <select class="form-control filter-select" autocomplete="off" name="status" style="width: 100%;">
                         <option value="">Все статусы</option>
                         @foreach($statuses as $key => $status)
-                            <option value="{{ $key }}">{{ $status }}</option>
+                            <option value="{{ $key }}" @if($key == ($filter['status'] ?? '')) selected @endif>{{ $status }}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="col-sm-6 col-md-3">
                     <select class="form-control filter-select" autocomplete="off" name="sort" style="width: 100%;">
-                        <option value="1">Сорт. по ФИО</option>
-                        <option value="2">Сорт. по id</option>
+                        <option value="name" @if('name' == ($filter['sort'] ?? '')) selected @endif>Сорт. по ФИО</option>
+                        <option value="id" @if('id' == ($filter['sort'] ?? '')) selected @endif>Сорт. по id</option>
                     </select>
                 </div>
                 <div class="col-sm-6 col-md-3">
                     <button class="btn btn-default btn-outline" title="Применить фильтр" style="width: 20%;" type="submit">
                         <i class="fa fa-search"></i>
                     </button>
-                    <a href=""
+                    <a href="{{ route('admin.users.index') }}"
                        class="btn btn-default btn-outline ml-2" title="Сбросить фильтр">
                         <i class="fa fa-eraser"></i>
                     </a>
