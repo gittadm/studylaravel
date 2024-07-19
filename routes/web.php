@@ -7,6 +7,7 @@ use App\Http\Controllers\CarbonController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\DatabaseController;
 use App\Http\Controllers\DatetimeCarbonController;
+use App\Http\Controllers\ExceptionController;
 use App\Http\Controllers\FlexController;
 use App\Http\Controllers\HabrController;
 use App\Http\Controllers\HomeworkController;
@@ -117,3 +118,5 @@ Route::get('session', [SessionController::class, 'index']);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('exception', [ExceptionController::class, 'index']);
