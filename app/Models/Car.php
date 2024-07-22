@@ -13,7 +13,11 @@ class Car extends Model
     protected $table = 'cars';
     // public $timestamps = false; // отключить created_at, updated_at $table->timestamps();
 
-    protected $fillable = ['vin', 'model'];
+    protected $fillable = [
+        'vin',
+        'model',
+        'user_id',
+    ];
 
     protected $casts = [
         'is_sold' => 'boolean',

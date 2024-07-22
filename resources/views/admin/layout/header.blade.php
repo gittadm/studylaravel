@@ -20,7 +20,7 @@
 {{--                    <li class="nav-item d-none d-lg-block"><a class="nav-link nav-link-expand"><i class="ficon feather icon-maximize"></i></a></li>--}}
                         <li class="dropdown dropdown-user nav-item" style="margin-top: 0.4rem;">
                             <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data--toggle="dropdown">
-                                <div class="user-nav d-sm-flex d-none"><span class="user-name text-bold-600">Иванов А.И.</span><span class="user-status">abs@mail.ru</span></div><span></span>
+                                <div class="user-nav d-sm-flex d-none"><span class="user-name text-bold-600">{{ optional(Auth::user())->name }}</span><span class="user-status">{{ optional(Auth::user())->email }}</span></div><span></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#"><i class="feather icon-user"></i> Ваш профиль</a>
                                 <div class="dropdown-divider"></div><a class="dropdown-item" href="#"><i class="feather icon-power"></i> Выход</a>

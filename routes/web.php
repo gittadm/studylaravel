@@ -15,6 +15,7 @@ use App\Http\Controllers\LessonsController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\SubjectsController;
 use App\Http\Controllers\TasksController;
+use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\VuexyController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentsController;
@@ -39,7 +40,7 @@ Route::get(
     function () {
         return view('welcome');
     }
-);
+)->name('main');
 
 // Route::get('subjects', ['App\Http\Controllers\SubjectsController', 'subjects']);
 Route::get('students', [StudentsController::class, 'students']);
@@ -87,9 +88,13 @@ Route::group(
         );
     }
 );
+//
+//Route::get('users/abc', function () {
+//    echo 123;  // NO CACHING!!!
+//});
 
 Route::group(
-    ['prefix' => 'admin', 'as' => 'admin.'],
+    ['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']],
     function () {
         Route::get('profile', [AdminController::class, 'profile'])->name('profile');
 
@@ -114,9 +119,16 @@ Route::group(
 
 Route::get('session', [SessionController::class, 'index']);
 
-
-Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('exception', [ExceptionController::class, 'index']);
+Route::get('transaction', [TransactionController::class, 'index']);
+
+Auth::routes(
+    [
+        'register' => false,
+        'reset' => false,
+        'verify' => false,
+        'confirm' => false
+    ]
+);
