@@ -23,11 +23,11 @@
                                 <div class="user-nav d-sm-flex d-none"><span class="user-name text-bold-600">{{ optional(Auth::user())->name }}</span><span class="user-status">{{ optional(Auth::user())->email }}</span></div><span></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#"><i class="feather icon-user"></i> Ваш профиль</a>
-                                <div class="dropdown-divider"></div><a class="dropdown-item" href="#"><i class="feather icon-power"></i> Выход</a>
+                                <div class="dropdown-divider"></div><a class="dropdown-item" href="{{ route('admin.logout') }}"><i class="feather icon-power"></i> Выход</a>
                             </div>
                         </li>
                         <li class="nav-item d-none d-lg-block">
-                            <a class="nav-link pr-2" href="#"><i class="fa fa-sign-out" style="font-size: 1.5rem;" title="Выход"></i></a>
+                            <a class="nav-link pr-2" href="{{ route('admin.logout') }}"><i class="fa fa-sign-out" style="font-size: 1.5rem;" title="Выход"></i></a>
                         </li>
 
                 </ul>

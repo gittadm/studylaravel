@@ -94,9 +94,12 @@ Route::group(
 //});
 
 Route::group(
-    ['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']],
+    ['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'admin']],
     function () {
         Route::get('profile', [AdminController::class, 'profile'])->name('profile');
+        Route::post('profile', [AdminController::class, 'update'])->name('profile.update');
+        Route::post('profile/password', [AdminController::class, 'updatePassword'])->name('profile.update.password');
+        Route::get('logout', [AdminController::class, 'logout'])->name('logout');
 
         Route::group(
             ['prefix' => 'users', 'as' => 'users.'],

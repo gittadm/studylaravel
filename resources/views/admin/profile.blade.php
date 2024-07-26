@@ -8,42 +8,40 @@
     <section id="basic-horizontal-layouts">
         <div class="row match-height">
             <div class="col-md-6 col-12">
+                @if(session()->has('message'))
+                    <p class="text-success">{{ session('message') }}</p>
+                @endif
+
+                @if(session()->has('error'))
+                    <p class="text-danger">{{ session('error') }}</p>
+                @endif
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Основные данные</h4>
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                            <form class="form form-horizontal" id="profileForm">
+                            <form method="post" action="{{ route('admin.profile.update') }}" class="form form-horizontal" id="profileForm">
+                                @csrf
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="form-group row">
                                                 <div class="col-md-4">
-                                                    <span>Фамилия</span>
+                                                    <span>Имя</span>
                                                 </div>
                                                 <div class="col-md-8">
-                                                    <input type="text" id="profileSurname" value="" autocomplete="off" class="form-control" name="fsurname" placeholder="">
+                                                    <input type="text" id="profileName" value="{{ old('name', $user->name) }}" autocomplete="off" class="form-control" name="name" placeholder="">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group row">
                                                 <div class="col-md-4">
-                                                    <span>Имя*</span>
+                                                    <span>Email</span>
                                                 </div>
                                                 <div class="col-md-8">
-                                                    <input type="text" id="profileName" value="" autocomplete="off" class="form-control" name="fname" placeholder="">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-group row">
-                                                <div class="col-md-4">
-                                                    <span>Отчество</span>
-                                                </div>
-                                                <div class="col-md-8">
-                                                    <input type="text" id="profileMiddleName" value="" autocomplete="off" class="form-control" name="fmiddlename" placeholder="">
+                                                    <input type="email" id="profileMiddleName" value="{{ old('email', $user->email) }}" autocomplete="off" class="form-control" name="email" placeholder="">
                                                 </div>
                                             </div>
                                         </div>
@@ -53,12 +51,12 @@
                                                     <span>Логин</span>
                                                 </div>
                                                 <div class="col-md-8">
-                                                    <input type="text" readonly id="profileLogin" class="form-control" autocomplete="off" value="" name="login-id" placeholder="">
+                                                    <input type="text" readonly id="profileLogin" class="form-control" autocomplete="off" value="{{ $user->login }}" placeholder="">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-8 offset-md-4">
-                                            <button type="button" class="btn btn-primary mr-1 mb-1" id="profileBtn">Сохранить</button>
+                                            <button type="submit" class="btn btn-primary mr-1 mb-1" id="profileBtn">Сохранить</button>
                                         </div>
                                     </div>
                                 </div>
@@ -66,7 +64,8 @@
 
                             <h4 class="card-title mt-2 mb-2">Смена пароля</h4>
 
-                            <form class="form form-horizontal" id="passwordForm">
+                            <form method="post" action="{{ route('admin.profile.update.password')  }}" class="form form-horizontal" id="passwordForm">
+                                @csrf
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col-12">
@@ -75,7 +74,7 @@
                                                     <span>Текущий пароль*</span>
                                                 </div>
                                                 <div class="col-md-8">
-                                                    <input type="password" id="currentPassword" class="form-control" name="password" placeholder="">
+                                                    <input type="password" id="currentPassword" class="form-control" name="current_password" placeholder="">
                                                 </div>
                                             </div>
                                         </div>
@@ -85,7 +84,7 @@
                                                     <span class="">Новый пароль*</span>
                                                 </div>
                                                 <div class="col-md-8">
-                                                    <input type="password" id="newPassword" class="form-control" name="password2" placeholder="не менее 8 символов">
+                                                    <input type="password" id="newPassword" class="form-control" name="password" placeholder="не менее 8 символов">
                                                 </div>
                                             </div>
                                         </div>
@@ -95,12 +94,12 @@
                                                     <span>Повтор пароля*</span>
                                                 </div>
                                                 <div class="col-md-8">
-                                                    <input type="password" id="newPasswordConfirmation" class="form-control" name="password3" placeholder="">
+                                                    <input type="password" id="newPasswordConfirmation" class="form-control" name="password_confirmation" placeholder="">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-8 offset-md-4">
-                                            <button type="button" class="btn btn-primary mr-1 mb-1" id="passwordBtn">Сохранить</button>
+                                            <button type="submi" class="btn btn-primary mr-1 mb-1" id="passwordBtn">Сохранить</button>
                                         </div>
                                     </div>
                                 </div>
