@@ -107,6 +107,7 @@ Route::group(
                 Route::controller(AdminUsersController::class)->group(
                     function () {
                         Route::get('/', 'users')->name('index');
+                        Route::get('/reset', 'resetFilter')->name('index.reset');
                         Route::get('create', 'create')->name('create');
                         Route::post('create', 'store')->name('store');
                         Route::get('delete/{id}', 'delete')->name('delete');

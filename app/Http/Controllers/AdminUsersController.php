@@ -6,13 +6,48 @@ use App\Http\Requests\Users\StoreRequest;
 use App\Http\Requests\Users\UpdatePasswordRequest;
 use App\Http\Requests\Users\UpdateRequest;
 use App\Models\User;
+use App\Services\UsersService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class AdminUsersController extends Controller
 {
+    private $usersService;
+
+    public function __construct(UsersService $usersService)
+    {
+        $this->usersService = $usersService;
+    }
+
+//    public function __construct(
+//        private UsersService $usersService,
+//    ) {
+//    }
+
+    public function resetFilter()
+    {
+        session()->forget('users_filter_search');
+        return redirect()->route('admin.users.index');
+    }
+
     public function users(Request $request)
     {
+        // если есть параметры в запросе, то значит, что
+        // пользователь нажал Применить фильтр -
+        // сохраняем параметры в сессию
+
+        // session(['users.filter.search' => 5]);
+
+        if (!empty($request->all())) {
+            session(['users_filter_search' => $request->search]);
+        } else {
+            if (session()->has('users_filter_search')) {
+                return redirect()
+                    ->route('admin.users.index',
+                            ['search' => session('users_filter_search')/*, 'status' => 'active'*/]);
+            }
+        }
+
         $users = User::query();
 
         if (!empty($request->status)) {
@@ -58,10 +93,8 @@ class AdminUsersController extends Controller
 
     public function store(StoreRequest $request)
     {
-        $data = $request->except('_token');
-        $data['password'] = bcrypt($data['password']);
-
-        User::create($data);
+        // (new UsersService())->store($request->except('_token'));
+        $this->usersService->store($request->except('_token'));
 
         return redirect()->route('admin.users.index')
             ->with('message', 'Пользователь успешно создан');
