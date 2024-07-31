@@ -12,6 +12,7 @@ use App\Http\Controllers\FlexController;
 use App\Http\Controllers\HabrController;
 use App\Http\Controllers\HomeworkController;
 use App\Http\Controllers\LessonsController;
+use App\Http\Controllers\ObserverExampleController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\SubjectsController;
 use App\Http\Controllers\TasksController;
@@ -133,6 +134,9 @@ Auth::routes(
         'register' => false,
         'reset' => false,
         'verify' => false,
-        'confirm' => false
+        'confirm' => false,
     ]
 );
+
+Route::get('observers', [ObserverExampleController::class, 'index']);
+Route::get('events/listeners', [ObserverExampleController::class, 'eventListenerExample']);
