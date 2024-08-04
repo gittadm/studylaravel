@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminUsersController;
 use App\Http\Controllers\BooksController;
+use App\Http\Controllers\CacheExampleController;
 use App\Http\Controllers\CarbonController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\DatabaseController;
@@ -140,3 +141,5 @@ Auth::routes(
 
 Route::get('observers', [ObserverExampleController::class, 'index']);
 Route::get('events/listeners', [ObserverExampleController::class, 'eventListenerExample']);
+
+Route::get('cache/example', [CacheExampleController::class, 'index']);
