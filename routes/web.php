@@ -143,3 +143,5 @@ Route::get('observers', [ObserverExampleController::class, 'index']);
 Route::get('events/listeners', [ObserverExampleController::class, 'eventListenerExample']);
 
 Route::get('cache/example', [CacheExampleController::class, 'index']);
+
+Route::get('postman/example', [CacheExampleController::class, 'postman']);

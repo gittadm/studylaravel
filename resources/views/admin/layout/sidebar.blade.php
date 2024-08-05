@@ -1,3 +1,4 @@
+@inject('usersService', 'App\Services\UsersService')
 <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
     <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
@@ -13,9 +14,12 @@
     <div class="shadow-bottom"></div>
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+            @php
+                $usersCount = $usersService->getNewUsersCount();
+            @endphp
             <li class=" nav-item"><a
                     href="{{ route('admin.users.index') }}" class="if-pb-0"><i class="feather icon-user"></i>
-                    <span class="menu-title">Пользователи</span></a>
+                    <span class="menu-title">Пользователи @if($usersCount)(+{{ $usersCount }})@endif</span></a>
             </li>
             <li class=" nav-item"><a
                     href="{{ route('admin.profile') }}" class="if-pb-0"><i class="feather icon-user"></i>

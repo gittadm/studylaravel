@@ -110,4 +110,21 @@ class User extends Authenticatable
     {
         return $this->hasMany(Car::class);
     }
+
+    /* scopes */
+
+    public function scopeActive($query)
+    {
+        return $query->whereIn('status', [User::STATUS_ACTIVE, User::STATUS_WAIT]);
+    }
+
+    public function scopeAdmin($query)
+    {
+        return $query->where('role', User::ROLE_ADMIN);
+    }
+
+    public function scopeFather($query, int $days = 30)
+    {
+        return $query->where('created_at', '<=', now()->subDays($days));
+    }
 }

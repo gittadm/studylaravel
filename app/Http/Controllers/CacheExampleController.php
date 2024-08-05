@@ -17,4 +17,9 @@ class CacheExampleController extends Controller
 
         echo $usersCount;
     }
+
+    public function postman()
+    {
+        return json_encode(['name' => 'Ivan', 'age' => 20]);
+    }
 }
